@@ -1,0 +1,25 @@
+@if (dataLoaded==false) {
+<div class="spinner-border text-dark" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Product Name</th>
+      <th>Category</th>
+      <th>Price</th>
+      <th>Units In Stock</th>
+    </tr>
+  </thead>
+  @for (item of products; track item.productId) {
+  <tr>
+    <td>{{ item.productId }}</td>
+    <td>{{ item.productName }}</td>
+    <td>{{ item.categoryId }}</td>
+    <td>{{ item.unitPrice }}</td>
+    <td>{{ item.unitsInStock }}</td>
+  </tr>
+  }
+</table>
