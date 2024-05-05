@@ -9,6 +9,7 @@ import {
   provideHttpClient,
   withFetch,
 } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import {
     NaviComponent,
     ProductComponent,
     HttpClientModule,
+    RouterModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

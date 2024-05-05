@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ProductResponseModel } from '../../models/productResponseModel';
 import { response } from 'express';
 import { ProductService } from '../../services/product.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -17,16 +17,32 @@ export class ProductComponent implements OnInit {
 
   dataLoaded = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.getProducts();
+    this.activatedRoute.params.subscribe((params) => {
+      if (params['categoryId']) {
+        this.getProductsByCategoryId(params['categoryId']);
+      } else {
+        this.getProducts();
+      }
+    });
   }
 
   getProducts() {
     this.productService.getProducts().subscribe((response) => {
       this.products = response.data;
-      this.dataLoaded = true;
     });
+  }
+
+  getProductsByCategoryId(categoryId: number) {
+    this.productService
+      .getProductsByCategory(categoryId)
+      .subscribe((response) => {
+        this.products = response.data;
+      });
   }
 }

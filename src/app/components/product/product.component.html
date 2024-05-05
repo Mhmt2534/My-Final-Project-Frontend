@@ -1,8 +1,3 @@
-@if (dataLoaded==false) {
-<div class="spinner-border text-dark" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-}
 <table class="table">
   <thead>
     <tr>
@@ -13,13 +8,15 @@
       <th>Unit In Stock</th>
     </tr>
   </thead>
-  @for (item of products; track item.productId) {
-  <tr>
-    <td>{{ item.productId }}</td>
-    <td>{{ item.productName }}</td>
-    <td>{{ item.categoryId }}</td>
-    <td>{{ item.unitPrice }}</td>
-    <td>{{ item.unitsInStock }}</td>
-  </tr>
-  }
+  <tbody>
+    @for (item of products; track item.productId) {
+    <tr>
+      <td>{{ item.productId }}</td>
+      <td>{{ item.productName }}</td>
+      <td>{{ item.categoryId }}</td>
+      <td>{{ item.unitPrice }}</td>
+      <td>{{ item.unitsInStock }}</td>
+    </tr>
+    }
+  </tbody>
 </table>

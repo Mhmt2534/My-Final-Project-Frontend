@@ -1,7 +1,16 @@
 <ul class="list-group">
-  <li class="list-group-item">An item</li>
-  <li class="list-group-item">A second item</li>
-  <li class="list-group-item">A third item</li>
-  <li class="list-group-item">A fourth item</li>
-  <li class="list-group-item">And a fifth one</li>
+  <li routerLink="/products" [class]="getAllCategoryClass()">All Products</li>
+  @for (item of categories; track item) {
+  <li
+    (click)="setCurrentCategory(item)"
+    routerLink="/products/category/{{ item.categoryId }}"
+    [class]="getCurrentCategoryClass(item)"
+  >
+    {{ item.categoryName }}
+  </li>
+  }
 </ul>
+
+@if (currentCategory) {
+<h5>{{ currentCategory.categoryName }}</h5>
+seçtiniz }
